@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login{
+    color: #132d46;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    filter: drop-shadow(offset-x offset-y blur-radius color);
+}
+
+.setup{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-weight: 700;
+}
+
+.image{
+    height: 250px;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uses{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 15%;
+}
+
+.usecase{
+    width: 50px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    width: 700px;
+    line-height: 100%;
+}
+
+.working{
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-around;
+}
+
+.technologies{
+    width: 175px;
+    text-align: center;
+}
+
+.technology{
+    height: 150px;
+    width: 175px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.control{
+    text-align: center;
+}
+
+.controlbtn{
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-around;
+}
+

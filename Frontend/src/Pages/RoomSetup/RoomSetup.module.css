@@ -1,0 +1,131 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+}
+
+.inner {
+  width: 95%;
+  margin: 40px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  justify-content: space-evenly;
+}
+
+.formCard {
+  background: #FFFFFF;
+  width: 25%;
+  padding: 28px;
+  border-radius: 12px;
+  border: 3px solid #132D46;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.roomname{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fieldRow {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 500;
+  color: #132D46;
+}
+
+.inputRow{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.input,
+.inputSmall {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #00cc99;
+  font-size: 18px;
+  font-weight: 500;
+  color: #132D46;
+}
+
+input::placeholder {
+  text-align: center;
+  font-weight: 500;
+}
+
+.inputSmall {
+  width: 35px;
+  text-align: center;
+}
+
+.inputSmall::-webkit-outer-spin-button,
+.inputSmall::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.smallNote {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.error {
+  font-size: 12px;
+  color: #ff5b5b;
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.sensorList {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-left: 16px;
+  color: #132D46;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+/* Right side blueprint */
+.blueprintCard {
+  width: 40%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.blueprintCanvas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legend {
+  color: #132D46;
+  font-size: 18px;
+}

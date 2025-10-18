@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.specificdashboard{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    color: #132D46;
+    font-weight: 700;
+    margin-bottom: 2%;
+}
+
+.count_chart{
+    width: 100%;
+    margin-top: 5%;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}

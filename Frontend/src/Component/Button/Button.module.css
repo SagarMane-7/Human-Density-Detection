@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btn{
+    font-family: 'Lexend', 'Helvetica Neue', Helvetica, Arial, sans-serif;  
+    color: white;
+    background-color: #00CC99;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}

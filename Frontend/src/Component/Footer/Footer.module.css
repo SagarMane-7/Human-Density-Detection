@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer {
+    display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.block{
+    color: #132D46;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.list{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+
+.rights{
+    text-align: center;
+    font-size: 18px;
+}
