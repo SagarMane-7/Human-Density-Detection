@@ -1,4 +1,3 @@
-//covergae for single sensor cover diameter and overlappct for required overlap between adjecnt coverages
 export function sensorLayout({ length, width, covergae = 4, overlapPct = 0.1}) {
     const L = Math.max(0.1 , Number(length || 0));
     const W = Math.max(0.1 , Number(width || 0));

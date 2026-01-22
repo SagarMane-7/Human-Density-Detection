@@ -1,7 +1,10 @@
 import { useState, useMemo } from "react";
 import { sensorLayout, verifyESP32 } from "./RoomSetup.logic";
+import { useAuth } from "../../context/AuthContext"; 
 
 export function useRoomSetup() {
+  const { user } = useAuth();
+
   const [roomName, setRoomName] = useState("");
   const [length, setLength] = useState("");
   const [width, setWidth] = useState("");
@@ -15,20 +18,21 @@ export function useRoomSetup() {
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState(null);
 
-  // recompute layout when dimensions change
   const layout = useMemo(() => {
     if (!length || !width) return null;
+
     return sensorLayout({
-      length: parseFloat(length),
-      width: parseFloat(width),
-      covergae: coverage,
-      overlapPct,
+      length: Number(length),
+      width: Number(width),
+      coverage: coverage,
+      overlapPct
     });
   }, [length, width, coverage, overlapPct]);
 
   async function handleVerify() {
     setError(null);
     setVerifying(true);
+
     try {
       const res = await verifyESP32(espId);
       setVerifyStatus(res);
@@ -40,23 +44,46 @@ export function useRoomSetup() {
   }
 
   async function handleAddRoom() {
+    if (!user) return setError("User not logged in");
     if (!roomName) return setError("Room name required");
     if (!layout) return setError("Invalid dimensions");
     if (!verifyStatus?.ok) return setError("Verify ESP32 first");
-
     setCreating(true);
+    setError(null);
+
     try {
+      const token = await user.getIdToken();
+
       const newRoom = {
         name: roomName,
-        dimensions: { length, width, height },
+        dimensions: {
+          length: Number(length),
+          width: Number(width),
+          height: Number(height)
+        },
         espId,
-        sensors: layout.sensors,
+        sensors: layout.sensors.map((s) => ({
+          sensorId: s.id,
+          x: s.x,
+          y: s.y
+        }))
       };
 
-      console.log("✅ Room created (mock):", newRoom);
-      await new Promise((res) => setTimeout(res, 800)); //fake api call
+      const res = await fetch("http://localhost:5000/api/rooms", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(newRoom)
+          });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to create room");
+      }
+
       alert(`Room "${roomName}" added successfully!`);
-      
       handleReset();
     } catch (err) {
       setError(err.message);
@@ -65,7 +92,7 @@ export function useRoomSetup() {
     }
   }
 
-   function handleReset() {
+  function handleReset() {
     setRoomName("");
     setLength("");
     setWidth("");
@@ -78,13 +105,23 @@ export function useRoomSetup() {
   }
 
   return {
-    roomName, setRoomName,
-    length, setLength,
-    width, setWidth,
-    height, setHeight,
-    espId, setEspId,
+    roomName,
+    setRoomName,
+    length,
+    setLength,
+    width,
+    setWidth,
+    height,
+    setHeight,
+    espId,
+    setEspId,
     layout,
-    verifyStatus, verifying, creating, error,
-    handleVerify, handleAddRoom, handleReset,
+    verifyStatus,
+    verifying,
+    creating,
+    error,
+    handleVerify,
+    handleAddRoom,
+    handleReset
   };
 }

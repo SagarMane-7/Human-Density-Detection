@@ -25,3 +25,32 @@ body {
     justify-content: space-evenly;
     align-items: center;
 }
+
+.blink {
+  background-color: #ff0000;
+  color: #ffffff;
+  width: 120px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  animation: alertPulse 1.5s infinite;
+}
+
+@keyframes alertPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 15px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}

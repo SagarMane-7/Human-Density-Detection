@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css'
+import Logout from "../Logout/Logout";
 
 const Navbar = () => {
      const location = useLocation();
@@ -14,6 +15,7 @@ const Navbar = () => {
                 <Link to="/roomsetup" style={{ textDecoration: 'none', color: location.pathname === '/roomsetup' ? '#00CC99' : '#ffffff' }}>RoomSetup</Link>
                 <Link to="/alerts" style={{ textDecoration: 'none', color: location.pathname === '/alerts' ? '#00CC99' : '#ffffff' }}>Alerts</Link>
                 <Link to="/help" style={{ textDecoration: 'none', color: location.pathname === '/help' ? '#00CC99' : '#ffffff' }}>Help</Link>
+                <div><Logout/></div>
             </div>
         </div>
     )

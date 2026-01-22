@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import styles from "./Help.module.css"
 import Navbar from '../../Component/Navbar/Navbar'
+import Animation from "../../Component/Animation/Animation";
+
 
 const Help = () => {
+
+    const [showAnimation, setShowAnimation] = useState(true);
+    
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setShowAnimation(false);
+      }, 500);
+    
+      return () => clearTimeout(timer);
+    }, []);
+    
+
     const [openQuestion, setOpenQuestion] = useState(null);
     const toggleQuestion = (index) => {
         setOpenQuestion(openQuestion === index ? null : index);
@@ -46,6 +60,9 @@ const Help = () => {
             answer: "The system features automatic MQTT reconnection. If your Wi-Fi temporarily drops, the ESP32 will automatically re-establish the connection to the MQTT broker to ensure continuous data flow."
         }
     ];
+    if (showAnimation) {
+      return <Animation />;
+    }
     return (
         <div>
             <Navbar />

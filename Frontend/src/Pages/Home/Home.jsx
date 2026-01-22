@@ -1,11 +1,25 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css'
 import Button from '../../Component/Button/Button'
 import Header from '../../Component/Header/Header'
 import Footer from '../../Component/Footer/Footer'
+import Animation from "../../Component/Animation/Animation.jsx";
 
 const Home = () => {
+  const [showAnimation, setShowAnimation] = useState(true);
+    
+  useEffect(() => {
+    const timer = setTimeout(() => {
+    setShowAnimation(false);
+    }, 700);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showAnimation) {
+    return <Animation />;
+  }
+
   return (
     <div>
       <Header />

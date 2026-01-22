@@ -4,14 +4,21 @@ import Navbar from '../../Component/Navbar/Navbar'
 import Button from '../../Component/Button/Button'
 import { useRoomSetup } from "./RoomSetup.js";
 import { Stage, Layer, Rect, Circle, Text } from "react-konva";
+import Animation from "../../Component/Animation/Animation.jsx";
 
 export default function RoomSetup() {
   const state = useRoomSetup();
-
-  // Track blueprint container size
   const containerRef = useRef(null);
   const [canvasSize, setCanvasSize] = useState({ w: 400, h: 400 });
-
+  const [showAnimation, setShowAnimation] = useState(true);
+      
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(false);
+      }, 500);
+      return () => clearTimeout(timer);
+  }, []);
+  
   useEffect(() => {
     function updateSize() {
       if (containerRef.current) {
@@ -26,6 +33,10 @@ export default function RoomSetup() {
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
+
+  if (showAnimation) {
+        return <Animation />;
+  }
 
   return (
     <div className={styles.container}>
@@ -44,7 +55,6 @@ export default function RoomSetup() {
             />
           </div>
 
-          {/*Dimensions*/}
           <div className={styles.fieldRow}>
             <label className={styles.label}>Dimensions</label>
             <div className={styles.inputRow}>
@@ -99,7 +109,6 @@ export default function RoomSetup() {
             </div>
           )}
 
-          {/*ESP32 ID*/}
           <div>
             <label className={styles.label}>Gateway ESP32 ID</label>
             <div style={{ display: "flex", gap: "12px", marginTop: "12px" }} >
@@ -147,11 +156,9 @@ export default function RoomSetup() {
             </Button>
           </div>
 
-          {/*Sensor list*/}
          
         </div>
 
-        {/* Right blueprint */}
         <div className={styles.blueprintCard} ref={containerRef}>
           {state.layout ? (
             <div className={styles.blueprintCanvas}>
@@ -177,8 +184,6 @@ export default function RoomSetup() {
                           strokeWidth={2}
                           fill="#fff"
                         />
-
-                        {/* Sensors */}
                         {state.layout.sensors.map((s, idx) => (
                           <React.Fragment key={s.id}>
                             <Circle

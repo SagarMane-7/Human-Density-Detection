@@ -23,7 +23,8 @@
     "react-konva": "^19.0.10",
     "react-native-webkit-webview": "^0.10.7",
     "react-router-dom": "^7.9.1",
-    "recharts": "^3.2.1"
+    "recharts": "^3.2.1",
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

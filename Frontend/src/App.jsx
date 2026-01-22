@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import Home from './Pages/Home/Home'
@@ -8,7 +8,9 @@ import Specific_Room from './Pages/Specific_Room/Specific_Room'
 import RoomSetup from './Pages/RoomSetup/RoomSetup.jsx'
 import Alerts from './Pages/Alerts/Alerts'
 import Help from './Pages/Help/Help';
+import Logout from "./Component/Logout/Logout";
 import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from "./context/ProtectedRoute";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -27,12 +29,13 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/authentication' element={<Auth />} />
-          <Route path='/dashboard/:id' element={<Specific_Room />} />
-          <Route path='/roomsetup' element={<RoomSetup />} />
-          <Route path='/alerts' element={<Alerts />} />
+          <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path='/dashboard/:id' element={<ProtectedRoute><Specific_Room /></ProtectedRoute>} />
+          <Route path='/roomsetup' element={<ProtectedRoute><RoomSetup /></ProtectedRoute>} />
+          <Route path='/alerts' element={<ProtectedRoute><Alerts /></ProtectedRoute>} />
           <Route path='/help' element={<Help />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

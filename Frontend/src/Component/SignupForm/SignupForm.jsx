@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./SignupForm.module.css";
 import { handleSignup } from "./SignupForm.logic";
+import Animation from "../../Component/Animation/Animation";
+
 
 export default function SignupForm({ setMode }) {
   const [name, setName] = useState("");
@@ -11,6 +13,15 @@ export default function SignupForm({ setMode }) {
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showAnimation, setShowAnimation] = useState(true);
+        
+  useEffect(() => {
+    const timer = setTimeout(() => {
+    setShowAnimation(false);
+    },500);
+    return () => clearTimeout(timer);
+  }, []);
+  
 
   const { signup } = useAuth();
   const navigate = useNavigate();
@@ -29,9 +40,12 @@ export default function SignupForm({ setMode }) {
     });
   }
 
+  if (showAnimation) {
+      return <Animation />;
+  }
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* Name */}
       <div className={styles.inputGroup}>
         <label className={styles.label}>Name</label>
         <input
@@ -42,7 +56,6 @@ export default function SignupForm({ setMode }) {
         />
       </div>
 
-      {/* Email */}
       <div className={styles.inputGroup}>
         <label className={styles.label}>Email</label>
         <input
@@ -54,7 +67,6 @@ export default function SignupForm({ setMode }) {
         />
       </div>
 
-      {/* Password */}
       <div className={styles.inputGroup}>
         <label className={styles.label}>Password</label>
         <input
@@ -66,7 +78,6 @@ export default function SignupForm({ setMode }) {
         />
       </div>
 
-      {/* Confirm Password */}
       <div className={styles.inputGroup}>
         <label className={styles.label}>Confirm Password</label>
         <input
@@ -78,15 +89,12 @@ export default function SignupForm({ setMode }) {
         />
       </div>
 
-      {/* Error */}
       {error && <p className={styles.error}>{error}</p>}
 
-      {/* Button */}
       <button type="submit" disabled={loading} className={styles.button}>
         {loading ? "Creating account..." : "Sign-up"}
       </button>
-
-      {/* Login link */}
+      
       <p className={styles.switchText}>
         Already have an account?{" "}
         <button
