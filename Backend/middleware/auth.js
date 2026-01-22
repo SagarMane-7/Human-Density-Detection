@@ -21,7 +21,7 @@ module.exports = async function authMiddleware(req, res, next) {
     req.user = decoded; // uid, email
     next();
   } catch (err) {
-    console.error("❌ Invalid Firebase token:", err.message);
+    console.error("Invalid Firebase token:", err.message);
     return res.status(401).json({ error: "Invalid token" });
   }
 };
