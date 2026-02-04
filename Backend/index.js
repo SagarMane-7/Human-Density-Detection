@@ -103,6 +103,7 @@ app.get("/api/rooms/:id", authMiddleware, async (req, res) => {
       id: room.roomId,
       name: room.name,
       count: live?.count || 0,
+      sensors: room.sensors,  
       people: live?.people || [],
       alerts: live?.alerts || "No Alerts",
       occupancyTrend: history
@@ -128,7 +129,7 @@ const mqttClient = mqtt.connect("mqtt://localhost:1883");
 
 mqttClient.on("connect", () => {
   console.log("MQTT connected");
-  mqttClient.subscribe("building/device/+/radar"); 
+  mqttClient.subscribe("building/device/+/radar");
 });
 
 mqttClient.on("message", async (_, message) => {

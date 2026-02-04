@@ -1,0 +1,16 @@
+* {
+    -webkit-tap-highlight-color: transparent; 
+    outline: none !important;                
+}
+
+body {
+    user-select: none;          
+    caret-color: transparent;   
+}
+
+input, textarea {
+    user-select: text;
+    caret-color: auto;
+    outline: revert !important;
+}
+

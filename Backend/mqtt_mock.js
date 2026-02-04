@@ -1,7 +1,7 @@
 const mqtt = require("mqtt");
 const client = mqtt.connect("mqtt://localhost:1883");
 
-const devices = ["7CDFA13B9E12", "ESP002", "ESP003"];
+const devices = ["RADAR_D40CDADC", "RADAR_D40CDADD", "RADAR_D40CDAD3"];
 
 function generatePeople() {
   const count = Math.floor(Math.random() * 7) + 1;

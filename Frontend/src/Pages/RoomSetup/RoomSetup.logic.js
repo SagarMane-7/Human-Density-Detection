@@ -29,7 +29,7 @@ export async function verifyESP32(espId) {
 
     return new Promise((resolve) => {
      setTimeout(() => {
-      if (espId.trim().toUpperCase().startsWith("ESP")) {
+      if (espId.trim().toUpperCase().startsWith("RADAR_")) {
         resolve({ ok: true, message: "Verified" });
       } else {
         resolve({ ok: false, message: "Not found on network" });

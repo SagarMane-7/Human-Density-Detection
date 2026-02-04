@@ -80,7 +80,7 @@ const Specific_Room = () => {
                 <div className={styles.count_chart} >
                     <section style={{ width: '400px', height: '350px', fontSize: "22px" }}>
                         <p>Total Count : {room.count}</p>
-                        <p>No. Of Sensors : {room.sensorDetails?.length || 0} </p>
+                        <p>No. Of Sensors : {room.sensors?.length || 0} </p>
                         <p>
                             {(() => {
                                 let alert;
